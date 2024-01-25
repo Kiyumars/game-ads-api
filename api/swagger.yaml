@@ -11,18 +11,18 @@ info:
 servers:
 - url: https://virtserver.swaggerhub.com/MAESSOUMIDEV/market-campaign-simple/1.0.0
   description: SwaggerHub API Auto Mocking
-tags:
-- name: admins
-  description: Secured Admin-only calls
-- name: developers
-  description: Operations available to regular developers
+# tags:
+# - name: admins
+#   description: Secured Admin-only calls
+# - name: developers
+#   description: Operations available to regular developers
 paths:
   /ad:
     get:
-      tags:
-      - admins
-      - clients
-      - developers
+      # tags:
+      # - admins
+      # - clients
+      # - developers
       summary: searches ads
       description: |
         By passing in the appropriate options, you can search for
@@ -69,10 +69,10 @@ paths:
                   $ref: '#/components/schemas/Ad'
                 x-content-type: application/json
     post:
-      tags:
-      - admins
-      - clients
-      - developers
+      # tags:
+      # - admins
+      # - clients
+      # - developers
       summary: adds an ad
       description: Adds an Ad to the system
       operationId: addAd
@@ -91,10 +91,10 @@ paths:
           description: an existing item already exists
   /campaign:
     get:
-      tags:
-      - admins
-      - clients
-      - developers
+      # tags:
+      # - admins
+      # - clients
+      # - developers
       summary: searches campaigns
       description: |
         By passing in the appropriate options, you can search for
@@ -143,10 +143,10 @@ paths:
         "400":
           description: bad input parameter
     post:
-      tags:
-      - admins
-      - clients
-      - developers
+      # tags:
+      # - admins
+      # - clients
+      # - developers
       summary: adds an campaign
       description: Adds a campaign to the system
       operationId: addCampaign
@@ -165,10 +165,10 @@ paths:
           description: an existing item already exists
   /campaignad:
     get:
-      tags:
-      - admins
-      - clients
-      - developers
+      # tags:
+      # - admins
+      # - clients
+      # - developers
       summary: searches campaign ads
       description: |
         By passing in the appropriate options, you can search for
@@ -223,10 +223,10 @@ paths:
                   $ref: '#/components/schemas/CampaignAd'
                 x-content-type: application/json
     post:
-      tags:
-      - admins
-      - clients
-      - developers
+      # tags:
+      # - admins
+      # - clients
+      # - developers
       summary: post ad in campaig
       operationId: AddCampaignAd
       requestBody:
