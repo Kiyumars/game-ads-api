@@ -1,0 +1,352 @@
+openapi: 3.0.0
+info:
+  title: In-Game Advertising API
+  description: Simple API for in-game market campaigns
+  contact:
+    email: maessoumi.dev@gmail.com.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+servers:
+- url: https://virtserver.swaggerhub.com/MAESSOUMIDEV/market-campaign-simple/1.0.0
+  description: SwaggerHub API Auto Mocking
+tags:
+- name: admins
+  description: Secured Admin-only calls
+- name: developers
+  description: Operations available to regular developers
+paths:
+  /ad:
+    get:
+      tags:
+      - admins
+      - clients
+      - developers
+      summary: searches ads
+      description: |
+        By passing in the appropriate options, you can search for
+        ads in the system
+      operationId: searchAds
+      parameters:
+      - name: client
+        in: query
+        description: pass an optional search for looking up campaign
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: integer
+      - name: skip
+        in: query
+        description: number of records to skip for pagination
+        required: false
+        style: form
+        explode: true
+        schema:
+          minimum: 0
+          type: integer
+          format: int32
+      - name: limit
+        in: query
+        description: maximum number of records to return
+        required: false
+        style: form
+        explode: true
+        schema:
+          maximum: 50
+          minimum: 0
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Ad'
+                x-content-type: application/json
+    post:
+      tags:
+      - admins
+      - clients
+      - developers
+      summary: adds an ad
+      description: Adds an Ad to the system
+      operationId: addAd
+      requestBody:
+        description: Ad item to add
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Ad'
+      responses:
+        "201":
+          description: ad created
+        "400":
+          description: "invalid input, object invalid"
+        "409":
+          description: an existing item already exists
+  /campaign:
+    get:
+      tags:
+      - admins
+      - clients
+      - developers
+      summary: searches campaigns
+      description: |
+        By passing in the appropriate options, you can search for
+        campaigns in the system
+      operationId: searchCampaigns
+      parameters:
+      - name: client
+        in: query
+        description: pass an optional search for looking up campaign
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: integer
+      - name: skip
+        in: query
+        description: number of records to skip for pagination
+        required: false
+        style: form
+        explode: true
+        schema:
+          minimum: 0
+          type: integer
+          format: int32
+      - name: limit
+        in: query
+        description: maximum number of records to return
+        required: false
+        style: form
+        explode: true
+        schema:
+          maximum: 50
+          minimum: 0
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Campaign'
+                x-content-type: application/json
+        "400":
+          description: bad input parameter
+    post:
+      tags:
+      - admins
+      - clients
+      - developers
+      summary: adds an campaign
+      description: Adds a campaign to the system
+      operationId: addCampaign
+      requestBody:
+        description: Inventory item to add
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Campaign'
+      responses:
+        "201":
+          description: campaign created
+        "400":
+          description: "invalid input, object invalid"
+        "409":
+          description: an existing item already exists
+  /campaignad:
+    get:
+      tags:
+      - admins
+      - clients
+      - developers
+      summary: searches campaign ads
+      description: |
+        By passing in the appropriate options, you can search for
+        ads in the system
+      operationId: searchCampaignAds
+      parameters:
+      - name: campaign
+        in: query
+        description: pass an optional search for looking up campaign
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: integer
+      - name: ad
+        in: query
+        description: pass an optional search for looking up ad
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: integer
+      - name: skip
+        in: query
+        description: number of records to skip for pagination
+        required: false
+        style: form
+        explode: true
+        schema:
+          minimum: 0
+          type: integer
+          format: int32
+      - name: limit
+        in: query
+        description: maximum number of records to return
+        required: false
+        style: form
+        explode: true
+        schema:
+          maximum: 50
+          minimum: 0
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CampaignAd'
+                x-content-type: application/json
+    post:
+      tags:
+      - admins
+      - clients
+      - developers
+      summary: post ad in campaig
+      operationId: AddCampaignAd
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CampaignAd'
+      responses:
+        "201":
+          description: campaign ad created
+        "400":
+          description: "invalid input, object invalid"
+        "409":
+          description: an existing item already exists
+components:
+  schemas:
+    Ad:
+      type: object
+      properties:
+        fileType:
+          type: string
+          enum:
+          - png
+          - jpg
+          - mp4
+        ref:
+          type: string
+          format: uri
+        size:
+          type: integer
+        adult:
+          type: boolean
+        children:
+          type: boolean
+      example:
+        ref: http://example.com/aeiou
+        size: 0
+        children: true
+        adult: true
+        fileType: png
+    Campaign:
+      required:
+      - companyId
+      - id
+      type: object
+      properties:
+        id:
+          type: integer
+        clientId:
+          type: integer
+        active:
+          type: boolean
+        startDate:
+          type: string
+          format: dateTime
+        endDate:
+          type: string
+          format: dateTime
+      example:
+        clientId: 6
+        endDate: endDate
+        active: true
+        id: 0
+        startDate: startDate
+    CampaignAd:
+      required:
+      - adId
+      - campaignId
+      type: object
+      properties:
+        id:
+          type: integer
+        adId:
+          type: integer
+        campaignId:
+          type: integer
+        deactivated:
+          type: boolean
+          default: false
+      example:
+        adId: 6
+        campaignId: 1
+        id: 0
+        deactivated: false
+    Game:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        companyId:
+          type: integer
+        release:
+          type: string
+          format: date
+    Client:
+      type: object
+      properties:
+        id:
+          type: integer
+        parentId:
+          type: integer
+          nullable: true
+        name:
+          type: string
+        industry:
+          type: string
+          enum:
+          - gaming
+          - social media
+          - gambling
+          - food
+          - alcohol
+          - media
+        adult:
+          type: boolean
+        children:
+          type: boolean
+        tier:
+          type: integer
+        currentClient:
+          type: boolean
