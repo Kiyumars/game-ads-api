@@ -20,10 +20,16 @@ import (
 	//
 	//    sw "github.com/myname/myrepo/go"
 	//
+	db "github.com/Kiyumars/game-ads-api/db"
 	sw "github.com/Kiyumars/game-ads-api/go"
 )
 
 func main() {
+	dbc, err := db.Create()
+	if err != nil {
+		panic(err)
+	}
+	sw.DB = dbc
 	log.Printf("Server started")
 
 	router := sw.NewRouter()
