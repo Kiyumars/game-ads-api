@@ -11,32 +11,32 @@ func Create() (*memdb.MemDB, error) {
 					"id": &memdb.IndexSchema{
 						Name:    "id",
 						Unique:  true,
-						Indexer: &memdb.IntFieldIndex{Field: "id"},
+						Indexer: &memdb.IntFieldIndex{Field: "Id"},
 					},
 					"filetype": &memdb.IndexSchema{
 						Name:    "filetype",
 						Unique:  false,
-						Indexer: &memdb.StringFieldIndex{Field: "filetype"},
+						Indexer: &memdb.StringFieldIndex{Field: "FileType"},
 					},
 					"ref": &memdb.IndexSchema{
 						Name:    "ref",
 						Unique:  true,
-						Indexer: &memdb.StringFieldIndex{Field: "ref"},
+						Indexer: &memdb.StringFieldIndex{Field: "Ref"},
 					},
 					"size": &memdb.IndexSchema{
 						Name:    "size",
 						Unique:  false,
-						Indexer: &memdb.IntFieldIndex{Field: "size"},
+						Indexer: &memdb.IntFieldIndex{Field: "Size"},
 					},
 					"adult": &memdb.IndexSchema{
 						Name:    "adult",
 						Unique:  false,
-						Indexer: &memdb.BoolFieldIndex{Field: "adult"},
+						Indexer: &memdb.BoolFieldIndex{Field: "Adult"},
 					},
 					"children": &memdb.IndexSchema{
 						Name: "children",
 						Unique: false,
-						Indexer: &memdb.BoolFieldIndex{Field: "children"},
+						Indexer: &memdb.BoolFieldIndex{Field: "Children"},
 					},
 				},
 			},
