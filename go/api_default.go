@@ -10,6 +10,8 @@
 package swagger
 
 import (
+	"encoding/json"
+	"log"
 	"net/http"
 
 	"github.com/hashicorp/go-memdb"
@@ -18,8 +20,59 @@ import (
 var DB *memdb.MemDB
 
 func AddAd(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
+	if r.Method == "POST" {
+		var ad Ad
+		err := json.NewDecoder(r.Body).Decode(&ad)
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusBadRequest)
+			return
+		}
+		log.Printf("ad data %+v", ad)
+		if ad.Id == 0 {
+			http.Error(w, "id not defined", http.StatusBadRequest)
+			return
+		}
+		if ad.FileType == "" {
+			http.Error(w, "File type not defined", http.StatusBadRequest)
+			return
+		}
+		if ad.Ref == "" {
+			http.Error(w, "Ad ref not defined", http.StatusBadRequest)
+			return
+		}
+		err = recordAd(DB, ad)
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+		w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+		w.WriteHeader(http.StatusOK)
+	}
+}
+
+func getAds(db *memdb.MemDB) ([]Ad, error) {
+	var ads []Ad
+	txn := db.Txn(false)
+	it, err := txn.Get("ad", "id")
+	if err != nil {
+		return ads, err
+	}
+	for obj := it.Next(); obj != nil; obj = it.Next() {
+		ad := obj.(Ad)
+		ads = append(ads, ad)
+	}
+
+	return ads, nil
+}
+
+func recordAd(db *memdb.MemDB, ad Ad) error {
+	txn := db.Txn(true)
+	err := txn.Insert("ad", ad)
+	if err != nil {
+		return err
+	}
+	txn.Commit()
+	return nil
 }
 
 func AddCampaign(w http.ResponseWriter, r *http.Request) {
@@ -33,6 +86,16 @@ func AddCampaignAd(w http.ResponseWriter, r *http.Request) {
 }
 
 func SearchAds(w http.ResponseWriter, r *http.Request) {
+	if r.Method == "GET" {
+		ads, err := getAds(DB)
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+		log.Printf("%+v\n", ads)
+		w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+		w.WriteHeader(http.StatusOK)
+	}
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	w.WriteHeader(http.StatusOK)
 }
