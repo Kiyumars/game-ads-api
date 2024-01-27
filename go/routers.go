@@ -51,133 +51,133 @@ var routes = Routes{
 	Route{
 		"Index",
 		"GET",
-		"/MAESSOUMIDEV/market-campaign-simple/1.0.0/",
+		"/",
 		Index,
 	},
 
 	Route{
 		"AddAd",
 		strings.ToUpper("Post"),
-		"/MAESSOUMIDEV/market-campaign-simple/1.0.0/ad",
+		"/ad",
 		AddAd,
 	},
 
 	Route{
 		"AddCampaign",
 		strings.ToUpper("Post"),
-		"/MAESSOUMIDEV/market-campaign-simple/1.0.0/campaign",
+		"/campaign",
 		AddCampaign,
 	},
 
 	Route{
 		"AddCampaignAd",
 		strings.ToUpper("Post"),
-		"/MAESSOUMIDEV/market-campaign-simple/1.0.0/campaignad",
+		"/campaignad",
 		AddCampaignAd,
 	},
 
 	Route{
 		"SearchAds",
 		strings.ToUpper("Get"),
-		"/MAESSOUMIDEV/market-campaign-simple/1.0.0/ad",
+		"/ad",
 		SearchAds,
 	},
 
 	Route{
 		"SearchCampaignAds",
 		strings.ToUpper("Get"),
-		"/MAESSOUMIDEV/market-campaign-simple/1.0.0/campaignad",
+		"/campaignad",
 		SearchCampaignAds,
 	},
 
 	Route{
 		"SearchCampaigns",
 		strings.ToUpper("Get"),
-		"/MAESSOUMIDEV/market-campaign-simple/1.0.0/campaign",
+		"/campaign",
 		SearchCampaigns,
 	},
 
 	Route{
 		"AddAd",
 		strings.ToUpper("Post"),
-		"/MAESSOUMIDEV/market-campaign-simple/1.0.0/ad",
+		"/ad",
 		AddAd,
 	},
 
 	Route{
 		"AddCampaign",
 		strings.ToUpper("Post"),
-		"/MAESSOUMIDEV/market-campaign-simple/1.0.0/campaign",
+		"/campaign",
 		AddCampaign,
 	},
 
 	Route{
 		"AddCampaignAd",
 		strings.ToUpper("Post"),
-		"/MAESSOUMIDEV/market-campaign-simple/1.0.0/campaignad",
+		"/campaignad",
 		AddCampaignAd,
 	},
 
 	Route{
 		"SearchAds",
 		strings.ToUpper("Get"),
-		"/MAESSOUMIDEV/market-campaign-simple/1.0.0/ad",
+		"/ad",
 		SearchAds,
 	},
 
 	Route{
 		"SearchCampaignAds",
 		strings.ToUpper("Get"),
-		"/MAESSOUMIDEV/market-campaign-simple/1.0.0/campaignad",
+		"/campaignad",
 		SearchCampaignAds,
 	},
 
 	Route{
 		"SearchCampaigns",
 		strings.ToUpper("Get"),
-		"/MAESSOUMIDEV/market-campaign-simple/1.0.0/campaign",
+		"/campaign",
 		SearchCampaigns,
 	},
 
 	Route{
 		"AddAd",
 		strings.ToUpper("Post"),
-		"/MAESSOUMIDEV/market-campaign-simple/1.0.0/ad",
+		"/ad",
 		AddAd,
 	},
 
 	Route{
 		"AddCampaign",
 		strings.ToUpper("Post"),
-		"/MAESSOUMIDEV/market-campaign-simple/1.0.0/campaign",
+		"/campaign",
 		AddCampaign,
 	},
 
 	Route{
 		"AddCampaignAd",
 		strings.ToUpper("Post"),
-		"/MAESSOUMIDEV/market-campaign-simple/1.0.0/campaignad",
+		"/campaignad",
 		AddCampaignAd,
 	},
 
 	Route{
 		"SearchAds",
 		strings.ToUpper("Get"),
-		"/MAESSOUMIDEV/market-campaign-simple/1.0.0/ad",
+		"/ad",
 		SearchAds,
 	},
 
 	Route{
 		"SearchCampaignAds",
 		strings.ToUpper("Get"),
-		"/MAESSOUMIDEV/market-campaign-simple/1.0.0/campaignad",
+		"/campaignad",
 		SearchCampaignAds,
 	},
 
 	Route{
 		"SearchCampaigns",
 		strings.ToUpper("Get"),
-		"/MAESSOUMIDEV/market-campaign-simple/1.0.0/campaign",
+		"/campaign",
 		SearchCampaigns,
 	},
 }
