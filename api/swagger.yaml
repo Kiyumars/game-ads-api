@@ -246,6 +246,8 @@ components:
     Ad:
       type: object
       properties:
+        Id:
+          type: integer
         fileType:
           type: string
           enum:

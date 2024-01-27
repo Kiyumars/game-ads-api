@@ -10,10 +10,11 @@
 package swagger
 
 type Ad struct {
+	Id int `json:"id"`
 
-	FileType string `json:"fileType,omitempty"`
+	FileType string `json:"filetype"`
 
-	Ref string `json:"ref,omitempty"`
+	Ref string `json:"ref"`
 
 	Size int32 `json:"size,omitempty"`
 
