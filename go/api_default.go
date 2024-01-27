@@ -28,7 +28,7 @@ func AddAd(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 		log.Printf("ad data %+v", ad)
-		if ad.Id == 0 {
+		if ad.Id == "" {
 			http.Error(w, "id not defined", http.StatusBadRequest)
 			return
 		}

@@ -247,7 +247,7 @@ components:
       type: object
       properties:
         Id:
-          type: integer
+          type: string
         fileType:
           type: string
           enum:

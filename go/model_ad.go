@@ -10,7 +10,7 @@
 package swagger
 
 type Ad struct {
-	Id int `json:"id"`
+	Id string `json:"id"`
 
 	FileType string `json:"filetype"`
 

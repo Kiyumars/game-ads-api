@@ -11,7 +11,7 @@ func Create() (*memdb.MemDB, error) {
 					"id": &memdb.IndexSchema{
 						Name:    "id",
 						Unique:  true,
-						Indexer: &memdb.IntFieldIndex{Field: "Id"},
+						Indexer: &memdb.StringFieldIndex{Field: "Id"},
 					},
 					"filetype": &memdb.IndexSchema{
 						Name:    "filetype",
